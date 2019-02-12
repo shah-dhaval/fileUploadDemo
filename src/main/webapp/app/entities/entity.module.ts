@@ -4,6 +4,10 @@ import { RouterModule } from '@angular/router';
 @NgModule({
     imports: [
         RouterModule.forChild([
+            {
+                path: 'user-files',
+                loadChildren: './user-files/user-files.module#FileUploadDemoUserFilesModule'
+            }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])
     ],
