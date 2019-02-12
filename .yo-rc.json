@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitCompany": "",
+    "baseName": "fileUploadDemo",
+    "packageName": "io.jhipster.fileuploaddemo",
+    "packageFolder": "io/jhipster/fileuploaddemo",
+    "serverPort": 8080,
+    "serviceDiscoveryType": false,
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "no",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "maven",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "enableTranslation": false,
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "clientFramework": "angularX",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "5.8.1",
+    "jwtSecretKey": "YTUxZTkwYjIyNmVjOTFiMThhZGQ0NGMwMGExNTQxYmNjN2IyOTFlNmZhYjczYjM1YjM1NTA5MzZkYmJlZjY4NGYyMjJmNzk0NjQzM2Y2ZDVlMzZlMjJjOWM4YmZmYWZmYzk1MTExNjI4MzA3ZTYxNmMyOTQyNjQ4NzFiNTRlMWI=",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
+  }
+}
