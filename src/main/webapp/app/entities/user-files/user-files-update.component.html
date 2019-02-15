@@ -26,11 +26,6 @@
                         [(ngModel)]="userFiles.description" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_files">Files</label>
-                    <input type="file" #file multiple class="form-control" name="files" id="field_files" />
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" for="field_user">User</label>
                     <select class="form-control" id="field_user" name="user" [(ngModel)]="userFiles.user"  required>
                         <option *ngIf="!editForm.value.user" [ngValue]="null" selected></option>

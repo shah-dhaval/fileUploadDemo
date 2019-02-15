@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -17,8 +17,6 @@ export class UserFilesUpdateComponent implements OnInit {
     isSaving: boolean;
 
     users: IUser[];
-    @ViewChild('file') file;
-    public files: Set<File> = new Set();
 
     constructor(
         protected jhiAlertService: JhiAlertService,
@@ -47,22 +45,10 @@ export class UserFilesUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-
-        const userfiles = this.file.nativeElement.files,
-        formData = new FormData();
-
-        for (let i = 0; i < userfiles.length; i++) {
-            formData.append('file', userfiles[i], userfiles[i].name);
-        }
-
-        formData.append('title', this.userFiles.title);
-        formData.append('description', this.userFiles.description || '');
-        formData.append('user', JSON.stringify(this.userFiles.user));
-
         if (this.userFiles.id !== undefined) {
-            this.subscribeToSaveResponse(this.userFilesService.update(formData));
+            this.subscribeToSaveResponse(this.userFilesService.update(this.userFiles));
         } else {
-            this.subscribeToSaveResponse(this.userFilesService.create(formData));
+            this.subscribeToSaveResponse(this.userFilesService.create(this.userFiles));
         }
     }
 

@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fileUploads">
+            <h2><span>File Uploads</span> {{fileUploads.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>File Name</span></dt>
+                <dd>
+                    <span>{{fileUploads.fileName}}</span>
+                </dd>
+                <dt><span>File Data</span></dt>
+                <dd>
+                    <div *ngIf="fileUploads.fileData">
+                        <a (click)="openFile(fileUploads.fileDataContentType, fileUploads.fileData)">open</a>
+                        {{fileUploads.fileDataContentType}}, {{byteSize(fileUploads.fileData)}}
+                    </div>
+                </dd>
+                <dt><span>User Files</span></dt>
+                <dd>
+                    <div *ngIf="fileUploads.userFiles">
+                        <a [routerLink]="['/user-files', fileUploads.userFiles?.id, 'view']">{{fileUploads.userFiles?.title}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/file-uploads', fileUploads.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

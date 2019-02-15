@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-file-uploads-heading">Create or edit a File Uploads</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!fileUploads.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="fileUploads.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fileName">File Name</label>
+                    <input type="text" class="form-control" name="fileName" id="field_fileName"
+                        [(ngModel)]="fileUploads.fileName" required/>
+                    <div [hidden]="!(editForm.controls.fileName?.dirty && editForm.controls.fileName?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fileName?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fileData">File Data</label>
+                    <div>
+                        <div *ngIf="fileUploads.fileData" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(fileUploads.fileDataContentType, fileUploads.fileData)">open</a><br>
+                            <span class="pull-left">{{fileUploads.fileDataContentType}}, {{byteSize(fileUploads.fileData)}}</span>
+                            <button type="button" (click)="fileUploads.fileData=null;fileUploads.fileDataContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_fileData" (change)="setFileData($event, fileUploads, 'fileData', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="fileData" id="field_fileData"
+                        [(ngModel)]="fileUploads.fileData" required/>
+                    <input type="hidden" class="form-control" name="fileDataContentType" id="field_fileDataContentType"
+                        [(ngModel)]="fileUploads.fileDataContentType" />
+                    <div [hidden]="!(editForm.controls.fileData?.dirty && editForm.controls.fileData?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.fileData?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_userFiles">User Files</label>
+                    <select class="form-control" id="field_userFiles" name="userFiles" [(ngModel)]="fileUploads.userFiles"  required>
+                        <option *ngIf="!editForm.value.userFiles" [ngValue]="null" selected></option>
+                        <option [ngValue]="userFilesOption.id === fileUploads.userFiles?.id ? fileUploads.userFiles : userFilesOption" *ngFor="let userFilesOption of userfiles; trackBy: trackUserFilesById">{{userFilesOption.title}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.userFiles?.dirty && editForm.controls.userFiles?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.userFiles?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
